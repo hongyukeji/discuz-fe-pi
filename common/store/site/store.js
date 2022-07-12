@@ -113,6 +113,10 @@ class SiteStore {
     return get(this.webConfig, 'setCash.cashMinSum', 1);
   }
 
+  @computed get isPi() {
+    return 'pi';
+  }
+
   @computed get wechatEnv() {
     if (this.isMiniProgramOpen) {
       return WECHAT_ENV_MAP.MINI;

@@ -39,6 +39,11 @@ class Login extends React.Component {
       return;
     }
 
+    if (site.isPi) {
+      router.replace('/user/pi-login');
+      return;
+    }
+
     router.replace('/user/username-login');
   }
 

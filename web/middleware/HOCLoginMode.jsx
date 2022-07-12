@@ -16,6 +16,13 @@ function HOCLoginMode(mode) {
         if (isServer()) return;
 
         const currentMode = this.getCurrentMode();
+        
+        // Pi模式页面，不兼容用户名模式和手机号模式
+        if (mode === 'pi') {
+          if (currentMode !== 'pi') {
+            LoginHelper.saveAndLogin();
+          }
+        }
 
         // 微信模式页面，不兼容用户名模式和手机号模式
         if (mode === 'weixin') {
@@ -48,6 +55,12 @@ function HOCLoginMode(mode) {
 
       getCurrentMode = () => {
         let currentMode = null;
+
+        if (this.props.site.isPi) {
+          currentMode = 'pi';
+          return currentMode;
+        }
+
         if (this.props.site.wechatEnv !== 'none') {
           currentMode = 'weixin';
           return currentMode;
